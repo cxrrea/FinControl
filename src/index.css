@@ -1,0 +1,78 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  color-scheme: light;
+  --bg: 246 246 243;
+  --surface: 255 255 255;
+  --surface-2: 241 241 237;
+  --line: 228 227 221;
+  --ink: 17 17 16;
+  --muted: 82 81 78;
+  --faint: 128 127 122;
+  --brand: 79 70 229;
+  --brand-soft: 238 237 253;
+  --income: 22 145 102;
+  --expense: 211 59 59;
+  --good: 12 140 12;
+  --warn: 198 130 0;
+  --bad: 208 59 59;
+}
+
+.dark {
+  color-scheme: dark;
+  --bg: 14 14 13;
+  --surface: 26 26 25;
+  --surface-2: 36 36 34;
+  --line: 48 48 45;
+  --ink: 240 239 236;
+  --muted: 195 194 183;
+  --faint: 140 139 132;
+  --brand: 129 120 245;
+  --brand-soft: 39 36 74;
+  --income: 52 199 140;
+  --expense: 236 110 110;
+  --good: 60 200 60;
+  --warn: 250 178 25;
+  --bad: 236 110 110;
+}
+
+html, body, #root { height: 100%; }
+body {
+  @apply bg-bg text-ink antialiased;
+  font-feature-settings: 'cv11', 'ss01';
+}
+
+.num { font-variant-numeric: tabular-nums; }
+
+@layer components {
+  .card { @apply rounded-2xl border border-line bg-surface shadow-card; }
+  .input {
+    @apply h-10 w-full rounded-xl border border-line bg-surface px-3 text-sm text-ink outline-none transition
+      placeholder:text-faint focus:border-brand focus:ring-4 focus:ring-brand/15;
+  }
+  .label { @apply mb-1.5 block text-xs font-medium text-muted; }
+  .btn {
+    @apply inline-flex h-10 items-center justify-center gap-2 whitespace-nowrap rounded-xl px-4 text-sm font-medium transition
+      disabled:cursor-not-allowed disabled:opacity-50 focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-brand/25;
+  }
+  .btn-primary { @apply btn bg-brand text-white hover:brightness-110; }
+  .btn-ghost { @apply btn text-muted hover:bg-surface-2 hover:text-ink; }
+  .btn-outline { @apply btn border border-line bg-surface text-ink hover:bg-surface-2; }
+  .btn-danger { @apply btn bg-bad text-white hover:brightness-110; }
+  .btn-icon { @apply inline-flex h-9 w-9 items-center justify-center rounded-lg text-muted transition hover:bg-surface-2 hover:text-ink; }
+  .chip { @apply inline-flex items-center gap-1 rounded-full px-2 py-0.5 text-xs font-medium; }
+}
+
+/* scrollbars discretos */
+* { scrollbar-width: thin; scrollbar-color: rgb(var(--line)) transparent; }
+
+/* recharts: remove contorno de foco ao clicar */
+.recharts-wrapper *:focus { outline: none; }
+
+@keyframes fade-in { from { opacity: 0; transform: translateY(4px) } to { opacity: 1; transform: none } }
+.animate-in { animation: fade-in .25s ease-out both; }
+
+/* itens de grid podem encolher (evita overflow com textos truncados) */
+.grid > * { min-width: 0; }
