@@ -2,7 +2,7 @@ name: Deploy no GitHub Pages
 
 on:
   push:
-    branches: [main]
+    branches: [main, claude/beautiful-euler-00r08r]
   workflow_dispatch:
 
 permissions:
